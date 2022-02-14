@@ -1,0 +1,44 @@
+label: artifacts-builder
+serviceAccount: jenkins
+nodeSelector: k8s.com/pool=jenkins-worker
+yamlMergeStrategy: "merge"
+yaml: |-
+    apiVersion: v1
+    kind: Pod
+    spec:
+      tolerations:
+      - key: "kubernetes.azure.com/scalesetpriority"
+        operator: "Equal"
+        value: "spot"
+        effect: "NoSchedule"
+      containers:
+        - name: kaniko
+          resources:
+            requests:
+              cpu:     800m
+              memory:  3100Mi
+            limits:
+              cpu:     2789m
+              memory:  4150Mi
+          volumeMounts:
+            - name: jenkins-docker-cfg
+              mountPath: /kaniko/.docker
+      volumes:
+        - name: jenkins-docker-cfg
+          projected:
+            sources:
+              - secret:
+                  name: docker-auth
+                  items:
+                    - key: .dockerconfigjson
+                      path: config.json
+        containers:
+          - name: kaniko
+            image: gcr.io/kaniko-project/executor:debug
+            ttyEnabled: true
+            command: "/busybox/cat"
+            args: ""
+            resourceRequestCpu: "800m"
+            resourceRequestMemory: "3048Mi"
+            resourceLimitCpu: "2"
+            resourceLimitMemory: "43048Mi"

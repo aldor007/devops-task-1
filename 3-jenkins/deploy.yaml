@@ -1,0 +1,23 @@
+label: deploy
+serviceAccount: jenkins
+nodeSelector: k8s.com/pool=jenkins-worker
+yamlMergeStrategy: "merge"
+yaml: |-
+    apiVersion: v1
+    kind: Pod
+    spec:
+      tolerations:
+      - key: "kubernetes.azure.com/scalesetpriority"
+        operator: "Equal"
+        value: "spot"
+        effect: "NoSchedule"
+      containers:
+        - name: deploy
+          image: bitnami/kubectl
+          ttyEnabled: true
+          command: "/busybox/cat"
+          args: ""
+          resourceRequestCpu: "800m"
+          resourceRequestMemory: "3048Mi"
+          resourceLimitCpu: "2"
+          resourceLimitMemory: "43048Mi"

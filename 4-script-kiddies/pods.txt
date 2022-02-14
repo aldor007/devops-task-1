@@ -1,0 +1,14 @@
+NAME                               READY   STATUS      RESTARTS   AGE
+mkaciuba-front-9fcf5f566-lmbld     0/1     Evicted     0          83d
+mkaciuba-front-689cb9575c-7bspj    0/1     Evicted     0          21d
+purge-api-79c7ff7f99-jmt85         1/1     Running     28         99d
+mkaciuba-primary-1                 1/1     Running     1          42d
+mkaciuba-primary-0                 1/1     Running     2          29d
+backup-mkaciuba-1643415720-hvvc4   0/1     Completed   0          2d17h
+backup-mkaciuba-1643502120-5g69d   0/1     Completed   0          41h
+mkaciuba-strapi-5f8cdfb6c7-9nwhs   0/1     Evicted     0          26h
+mkaciuba-strapi-5f8cdfb6c7-pflc6   1/1     Running     0          23h
+mkaciuba-strapi-5f8cdfb6c7-zqjdx   1/1     Running     0          23h
+mkaciuba-front-7995f48567-txxsb    1/1     Running     2          23h
+mkaciuba-front-7995f48567-82lbc    1/1     Running     0          23h
+backup-mkaciuba-1643588520-8lb49   0/1     Completed   0          17h

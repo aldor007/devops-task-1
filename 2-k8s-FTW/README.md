@@ -1,0 +1,1 @@
+Simple statefulset wihout helm chart 
